@@ -1,12 +1,15 @@
 package kz.proffix4.patterns.demo;
 
 /*
+ * Паттерн "Abstract Factory"
  * Абстрактная фабрика предоставляет интерфейс для создания целых семейств объектов
  * без указания конкретных классов. Объекты каждого семейства должны быть логически связаны между собой. 
+ *
+ * (!) Фишка в использовании интерфейсов в интерфейсах в структуре классов
  */
 interface ICoffeeMachine {
-    public ICoffeModule makeCoffee();
-    public IChocolateModule makeChocolate();
+    public ICoffeModule coffee();
+    public IChocolateModule chocolate();
 }
 
 interface ICoffeModule {
@@ -19,25 +22,21 @@ interface IChocolateModule {
 }
 
 class CoffeModule implements ICoffeModule {
-
     @Override
     public void makeCappicino() {
-        System.out.println("take Cappicino");
+        System.out.println("Take your Cappicino");
     }
-
     @Override
     public void makeAmericano() {
-        System.out.println("take Americano");
+        System.out.println("Take your Americano");
     }
 }
 
 class ChocolateModule implements IChocolateModule {
-
     @Override
     public void make() {
-        System.out.println("take Chocolate");
+        System.out.println("Take your Chocolate");
     }
-
 }
 
 class CoffeeMachine implements ICoffeeMachine {
@@ -45,12 +44,12 @@ class CoffeeMachine implements ICoffeeMachine {
     IChocolateModule chocolateModule = new ChocolateModule();
 
     @Override
-    public ICoffeModule makeCoffee() {
+    public ICoffeModule coffee() {
         return coffeModule;
     }
 
     @Override
-    public IChocolateModule makeChocolate() {
+    public IChocolateModule chocolate() {
         return chocolateModule;
     }
 }
@@ -60,10 +59,11 @@ class CoffeeMachine implements ICoffeeMachine {
  *
  */
 public class AbstractFactoryExample {
+
     public static void main(String[] args) {
         ICoffeeMachine coffeeMachine = new CoffeeMachine();
-        coffeeMachine.makeCoffee().makeCappicino();
-        coffeeMachine.makeCoffee().makeAmericano();
-        coffeeMachine.makeChocolate().make();
+        coffeeMachine.coffee().makeCappicino();
+        coffeeMachine.coffee().makeAmericano();
+        coffeeMachine.chocolate().make();
     }
 }

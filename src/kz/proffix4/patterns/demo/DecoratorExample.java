@@ -13,6 +13,7 @@ interface IPrinter {
  *
  */
 class Printer implements IPrinter {
+
     StringBuilder textData = new StringBuilder();
 
     public Printer(String txt) {
@@ -20,7 +21,7 @@ class Printer implements IPrinter {
     }
 
     public Printer(Printer parent, String txt) {
-        textData.append(parent.textData.toString() + " " + txt);
+        textData.append(parent.textData.toString()).append("; ").append(txt);
     }
 
     @Override

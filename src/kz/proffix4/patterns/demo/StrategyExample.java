@@ -5,6 +5,8 @@ package kz.proffix4.patterns.demo;
  * Этот паттерн проектирования известен также под названием Policy. 
  * Суть его состоит в том, чтобы создать несколько моделей поведения (стратегий) для одного объекта
  * и вынести их в отдельные классы. 
+ *
+ * (!) Хитрость паттерна подсовывать в параметры вместо конкретного класса совместимого интерфейса класса
  */
 interface IBattery {
 
@@ -12,6 +14,7 @@ interface IBattery {
 }
 
 class NativeBattery implements IBattery {
+
     @Override
     public void power(boolean turn) {
         System.out.println("Native battery power is " + turn);
@@ -20,6 +23,7 @@ class NativeBattery implements IBattery {
 }
 
 class CompatibleBattery implements IBattery {
+
     @Override
     public void power(boolean turn) {
         System.out.println("Compatible battery power is " + turn);
